@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería — Valerie Beauty Studio</title>
+    <link rel="stylesheet" href="../Styles CSS/Styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-text">
+            <img src="../Img/logo vp.png" alt="VP Beauty Studio Logo" class="vp-logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="prueba.html">Inicio</a></li>
+                <li><a href="sobre-mi.html">Sobre mí</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="reservas.html" class="btn">Reservar</a></li>
+                <li><a href="Galería.html">Galeria</a></li>
+            </ul>
+        </nav>
+    </header>
+<main style="max-width:1100px; margin:0 auto; padding:40px 20px;">
+    <section id="galeria" class="gallery">
+        <h2>Galería profesional</h2>
+        <p style="text-align:center; color:#666; max-width:900px; margin:0 auto 20px;">
+            Aquí encontrarás una selección de trabajos realizados por Valerie Polanco: novias, editoriales, looks de eventos y transformaciones. 
+            Haz clic en una imagen para verla ampliada.
+        </p>
+
+        <div class="gallery-grid" role="list">
+            <figure class="gallery-item" role="listitem">
+                <img src="../Img/c4.jpg" alt="Maquillaje de novia - natural glam" tabindex="0">
+                <figcaption>Maquillaje de novia — Natural Glam</figcaption>
+            </figure>
+
+            <figure class="gallery-item" role="listitem">
+                <img src="../Img/g1.jpg" alt="Maquillaje editorial - color intenso" tabindex="0">
+                <figcaption>Editorial — Color intenso</figcaption>
+            </figure>
+
+            <figure class="gallery-item" role="listitem">
+                <img src="../Img/e4.jpg" alt="Look de evento" tabindex="0">
+                <figcaption>Look de evento — Elegante</figcaption>
+            </figure>
+
+            <!-- Nuevas imágenes -->
+            <figure class="gallery-item" role="listitem">
+                <img src="../Img/n1.jpg" alt="Maquillaje artístico - fantasía floral" tabindex="0">
+                <figcaption>Maquillaje artístico — Fantasía floral</figcaption>
+            </figure>
+
+            <figure class="gallery-item" role="listitem">
+                <img src="../Img/t1.jpg" alt="Transformación completa - antes y después" tabindex="0">
+                <figcaption>Transformación — Antes y después</figcaption>
+            </figure>
+
+            <figure class="gallery-item" role="listitem">
+                <img src="../Img/l.jpg" alt="Maquillaje social - tonos cálidos" tabindex="0">
+                <figcaption>Maquillaje social — Tonos cálidos</figcaption>
+            </figure>
+
+            <figure class="gallery-item" role="listitem">
+                <img src="../Img/j.jpg" alt="Maquillaje social - tonos cálidos" tabindex="0">
+                <figcaption>Maquillaje social — Tonos cálidos</figcaption>
+            </figure>
+        </div>
+    </section>
+</main>
+
+
+    <footer class="footer">
+        <p>© 2025 Valerie Beauty Studio</p>
+    </footer>
+
+    <script>
+        // Al cargar la página, hacer scroll a la sección #galeria para que el usuario inicie ahí
+        window.addEventListener('load', function() {
+            var el = document.getElementById('galeria');
+            if (el) {
+                // Usar scrollIntoView con comportamiento suave
+                setTimeout(function(){ el.scrollIntoView({behavior: 'smooth', block: 'start'}); }, 120);
+            }
+        });
+    </script>
+</body>
+</html>

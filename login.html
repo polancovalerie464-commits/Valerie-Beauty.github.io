@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Valerie Beauty — Iniciar Sesión</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .auth-container{max-width:400px;margin:50px auto;padding:30px;background:var(--card);border-radius:12px;box-shadow:var(--shadow);text-align:center}
+        .auth-container h2{color:var(--accent);margin-bottom:20px}
+        .auth-container form{display:flex;flex-direction:column;gap:15px}
+        .auth-container input{padding:10px;border-radius:8px;border:1px solid #ccc;font-size:1rem}
+        .auth-container .btn{margin-top:10px;width:100%}
+        #auth-message-login,#auth-message-register{margin-top:15px;font-weight:700;min-height:20px;color:#d9534f}
+        .auth-message.success{color:#5cb85c!important}
+        .switch-link{display:block;margin-top:20px;font-size:.9rem;cursor:pointer;color:var(--muted)}
+        .switch-link:hover{color:var(--accent)}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="brand">Valerie Beauty</div>
+        <nav class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="Galería.html">Galería</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="auth-container">
+            <div id="loginPanel">
+                <h2>Iniciar Sesión</h2>
+                <form id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="Correo Electrónico" required>
+                    <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                    <p id="auth-message-login"></p>
+                    <button type="submit" class="btn primary">Entrar</button>
+                </form>
+                <a class="switch-link" onclick="showRegister()">¿No tienes cuenta? Regístrate aquí</a>
+            </div>
+
+            <div id="registerPanel" style="display:none;">
+                <h2>Crear Cuenta</h2>
+                <form id="registerForm">
+                    <input type="text" id="registerName" placeholder="Nombre" required>
+                    <input type="email" id="registerEmail" placeholder="Correo Electrónico" required>
+                    <input type="password" id="registerPassword" placeholder="Contraseña (mín. 6 caracteres)" required minlength="6">
+                    <p id="auth-message-register"></p>
+                    <button type="submit" class="btn primary">Registrarme</button>
+                </form>
+                <a class="switch-link" onclick="showLogin()">Ya tengo una cuenta. Iniciar Sesión</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">Valerie Beauty</footer>
+    
+    <script src="../JS/javaS.js"></script>
+    <script>
+        function normalizeEmail(email){
+            if(!email) return '';
+            email = email.trim().toLowerCase();
+            const parts = email.split('@');
+            if(parts.length!==2) return email;
+            let local = parts[0], domain = parts[1];
+            if(domain==='gmail.com' || domain==='googlemail.com'){
+                local = local.split('+')[0];
+                local = local.replace(/\./g,'');
+            }
+            return `${local}@${domain}`;
+        }
+
+        function showRegister(){
+            document.getElementById('loginPanel').style.display='none';
+            document.getElementById('registerPanel').style.display='block';
+            document.getElementById('auth-message-login').textContent='';
+        }
+        function showLogin(){
+            document.getElementById('loginPanel').style.display='block';
+            document.getElementById('registerPanel').style.display='none';
+            document.getElementById('auth-message-register').textContent='';
+        }
+
+        function performLogin(email,password){
+            email = normalizeEmail(email);
+            password = password||'';
+            const possibleKeys = ['valerie_beauty_users_db','isa_shop_users_db','valerie_beauty_users_v1','users_db'];
+            let users = [];
+            for(const k of possibleKeys){
+                const arr = JSON.parse(localStorage.getItem(k)||'null');
+                if(Array.isArray(arr) && arr.length){ users = arr; break; }
+            }
+            users = users || [];
+            let user = users.find(u => normalizeEmail(u.email) === email && u.password === password);
+            if(!user){
+                const admins = JSON.parse(localStorage.getItem('valerie_beauty_admins_db')||'[]');
+                const admin = admins.find(a => normalizeEmail(a.email)===email && a.password===password);
+                if(admin) user = { id: admin.id, name: admin.name, email: admin.email, created: new Date().toISOString() };
+            }
+            if(!user) return { success:false, message:'Email o contraseña incorrectos.' };
+            const sessionUser = { id:user.id, name:user.name||'', email:normalizeEmail(user.email), created:user.created||new Date().toISOString() };
+            localStorage.setItem('isa_shop_user_v1', JSON.stringify(sessionUser));
+            setTimeout(()=> window.location.href = 'dashboard.html', 500);
+            return { success:true, message:'Login exitoso', user: sessionUser };
+        }
+
+        function performRegister(name,email,password){
+            name = (name||'').trim();
+            email = normalizeEmail(email);
+            password = password||'';
+            if(!name||!email||password.length<6) return { success:false, message:'Datos inválidos. Completa todos los campos.' };
+            let users = JSON.parse(localStorage.getItem('isa_shop_users_db')||'[]');
+            const alt = JSON.parse(localStorage.getItem('isa_shop_users')||'[]');
+            if(Array.isArray(alt) && alt.length) users = users.concat(alt);
+            if(users.find(u => normalizeEmail(u.email)===email)) return { success:false, message:'El email ya está registrado.' };
+            const newUser = { id:Date.now(), name:name, email:email, password:password, created:new Date().toISOString() };
+            users.push(newUser);
+            localStorage.setItem('isa_shop_users_db', JSON.stringify(users));
+            const sessionUser = { id:newUser.id, name:newUser.name, email:normalizeEmail(newUser.email), created:newUser.created };
+            localStorage.setItem('isa_shop_user_v1', JSON.stringify(sessionUser));
+            setTimeout(()=> window.location.href = 'dashboard.html', 500);
+            return { success:true, message:'Registro exitoso. Redirigiendo...', user: sessionUser };
+        }
+
+        (function attachAuthHandlers(){
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if(loginForm){
+                loginForm.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    const email = document.getElementById('loginEmail').value.trim();
+                    const password = document.getElementById('loginPassword').value;
+                    const msgEl = document.getElementById('auth-message-login');
+                    if(!email||!password){ msgEl.textContent='Por favor completa todos los campos.'; msgEl.className=''; return; }
+                    const result = performLogin(email,password);
+                    msgEl.textContent = result.message;
+                    msgEl.className = result.success ? 'auth-message success' : 'auth-message error';
+                });
+            }
+
+            if(registerForm){
+                registerForm.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    const name = document.getElementById('registerName').value.trim();
+                    const email = document.getElementById('registerEmail').value.trim();
+                    const password = document.getElementById('registerPassword').value;
+                    const msgEl = document.getElementById('auth-message-register');
+                    if(!name||!email||!password){ msgEl.textContent='Por favor completa todos los campos.'; msgEl.className=''; return; }
+                    const result = performRegister(name,email,password);
+                    msgEl.textContent = result.message;
+                    msgEl.className = result.success ? 'auth-message success' : 'auth-message error';
+                });
+            }
+        })();
+
+        function ensureAdminExists(){
+            let admins = JSON.parse(localStorage.getItem('isa_shop_admins_db')||'[]');
+            if(!admins||admins.length===0){
+                admins = [{ id:1, email:'admin@valerie.beauty.com', password:'admin123', name:'Administrador', created: new Date().toISOString() }];
+                localStorage.setItem('valerie_beauty_admins_db', JSON.stringify(admins));
+            }
+        }
+
+        window.addEventListener('load', function(){
+            ensureAdminExists();
+            const users = JSON.parse(localStorage.getItem('isa_shop_users_db')||'[]');
+            if(users.length===0){
+                const demoUser = { id:1, name:'Usuario Demo', email:'demo@valerie.beauty', password:'demo123', created:new Date().toISOString() };
+                localStorage.setItem('isa_shop_users_db', JSON.stringify([demoUser]));
+                console.log('Usuario demo creado. Email: demo@valerie.beauty, Contraseña: demo123');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sobre mí - Valerie Beauty Studio</title>
+  <link rel="stylesheet" href="../Styles CSS/Styles.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 2.2em;
+      color: #000;
+      letter-spacing: 1px;
+    }
+
+    .sobre-mi-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      flex-wrap: wrap; /* para que se adapte en móviles */
+    }
+
+    .sobre-mi-texto {
+      flex: 1;
+      min-width: 300px;
+      text-align: justify;
+      line-height: 1.8;
+      font-size: 1.05em;
+    }
+
+    .sobre-mi-texto p {
+      margin-bottom: 20px;
+    }
+
+    .sobre-mi-imagen {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+    }
+
+    .sobre-mi-imagen img {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 0.9em;
+      border-top: 1px solid #ddd;
+      margin-top: 40px;
+    }
+
+    /* Adaptación móvil */
+    @media (max-width: 768px) {
+      .sobre-mi-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .sobre-mi-texto {
+        text-align: justify;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo-text">
+      <img src="../Img/logo vp.png" alt="VP Beauty Studio Logo" class="vp-logo">
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="prueba.html">Inicio</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="Galería.html">Galería</a></li>
+        <li><a href="reservas.html">Reservar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Sobre mí</h1>
+
+  <div class="sobre-mi-container">
+    <div class="sobre-mi-texto">
+      <p>Soy <strong>Valerie Polanco</strong>, maquilladora apasionada por el arte de resaltar la belleza individual. Mi objetivo va más allá del maquillaje: busco contar historias a través de cada mirada, de cada rostro. Creo en un estilo que rompe esquemas, que transmite fuerza, elegancia y autenticidad.</p>
+
+      <p>Este año, mi propósito es crear estilos únicos, modernos y vibrantes que reflejen quién eres realmente. Cada transformación está guiada por la creatividad, la innovación y una conexión real contigo.</p>
+
+      <p><em>Lo mejor está por comenzar…</em></p>
+    </div>
+
+    <div class="sobre-mi-imagen">
+      <img src="../Img/v.jpg" alt="Valerie Polanco Maquilladora">
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Valerie Beauty Studio</p>
+  </footer>
+</body>
+</html>

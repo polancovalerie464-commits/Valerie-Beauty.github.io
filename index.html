@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valerie Beauty Studio</title>
+    <link rel="stylesheet" href="../Styles CSS/Styles.css">
+    <!-- Google Fonts necesarias para las clases tipográficas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tab styles removed: using regular page navigation to individual pages -->
+
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-text">
+            <img src="../Img/logovp.png" alt="VP Beauty Studio Logo" class="vp-logo">
+        </div>
+        <nav>
+            <!-- Navegación clásica: cada enlace abre su página correspondiente -->
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="sobre-mi.html">Sobre mí</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="Galería.html">Galería</a></li>
+                    <li><a href="reservas.html" class="btn">Reservar</a></li>
+                    <li><a href="login.html">Iniciar Sesión</a></li>
+
+                </ul>
+        </nav>
+    </header>
+
+    
+    <!-- Simplified homepage: only Sobre mí, Servicios, Galería, Reservas -->
+    <main style="max-width:1000px; margin:0 auto; padding:30px;">
+
+        <section id="inicio" class="hero">
+            <div class="hero-text">
+                <h1>Valerie Beauty Studio</h1>
+                <p class="subtext">Belleza que cuenta historias. Maquillaje profesional para cada momento.</p>
+                <p><a href="#reservas" class="btn-book">Reservar ahora</a></p>
+                <p>Soy Valerie Polanco, maquilladora apasionada por el arte de resaltar la belleza individual. Mi objetivo va más allá del maquillaje: busco contar historias a través de cada mirada, de cada rostro.</p>
+                <p>Creo en un estilo que transmite fuerza, elegancia y autenticidad. Cada transformación está guiada por la creatividad, la innovación y una conexión real contigo.</p>
+            </div>
+            <div class="hero-img">
+                <img src="../Img/foto de ZARA.jpg" alt="Imagen principal" style="border-radius:12px; max-width:420px; width:100%;">
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>Sobre mí</h2>
+            <p><a href="sobre-mi.html">Leer más sobre mí</a></p>
+        </section>
+
+        <section id="services" class="services" style="margin-top:30px;">
+            <h2>Servicios</h2>
+            <ul>
+                <li>Maquillaje para novias (incluye prueba opcional)</li>
+                <li>Maquillaje para eventos y sociales</li>
+                <li>Maquillaje editorial y sesiones de foto</li>
+                <li>Asesorías personalizadas y clases rápidas</li>
+            </ul>
+        </section>
+
+        <section id="galeria" class="gallery" style="margin-top:30px;">
+            <h2>Galería</h2>
+            <div class="gallery-grid" style="padding:20px;">
+                <div class="gallery-item"><img src="../Img/foto de ZARA.jpg" alt="Trabajo 1"></div>
+                <div class="gallery-item"><img src="../Img/foto de ZARA.jpg" alt="Trabajo 2"></div>
+                <div class="gallery-item"><img src="../Img/logo vp.png" alt="Trabajo 3"></div>
+            </div>
+            <div style="text-align:center; color:#666; margin-top:12px;">Puedes reemplazar las imágenes con tus fotos profesionales ubicadas en la carpeta <code>Img/</code>.</div>
+        </section>
+
+        <section id="reservas" class="reservas" style="margin-top:30px;">
+            <h2>Reservas</h2>
+            <p>Puedes reservar por WhatsApp o completando la solicitud abajo.</p>
+            <form action="" method="post" style="display:flex; flex-direction:column; gap:10px; max-width:500px;">
+                <input type="text" name="name" placeholder="Tu nombre" required style="padding:10px;">
+                <input type="tel" name="phone" placeholder="Teléfono" required style="padding:10px;">
+                <input type="email" name="email" placeholder="Email" required style="padding:10px;">
+                <textarea name="notes" rows="4" placeholder="Notas o fecha preferida" style="padding:10px;"></textarea>
+                <button type="submit" style="width:200px;">Enviar solicitud</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Valerie Beauty Studio</p>
+    </footer>
+
+    </body>
+</html>

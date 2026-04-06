@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valerie Beauty Studio</title>
+    <link rel="stylesheet" href="../Styles CSS/Styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- PORTADA PRINCIPAL --- */
+        .hero-banner {
+            width: 100%;
+            height: 100vh;
+            background-image: url('../Img/36e679b5-ba6f-4edf-9b79-5ddba93e211c.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-banner::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.45); /* Efecto de oscurecido */
+        }
+
+        .hero-banner-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-banner h1 {
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .btn-banner {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 28px;
+            background-color: #f1c4c4;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-banner:hover {
+            background-color: #e7a8a8;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-text">
+            <img src="../Img/logo vp.png" alt="VP Beauty Studio" class="vp-logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="prueba.html">Inicio</a></li>
+                <li><a href="sobre-mi.html">Sobre mí</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="Galería.html">Galería</a></li>
+                <li><a href="reservas.html" class="btn">Reservar</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 🌸 Solo la portada en Inicio -->
+        <section id="inicio" class="hero-banner">
+            <div class="hero-banner-content">
+                <h1>Valerie Beauty Studio</h1>
+                <p>Belleza que cuenta historias. Maquillaje profesional para cada momento.</p>
+                <a href="#reservas" class="btn-banner">Reservar ahora</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Valerie Beauty Studio</p>
+    </footer>
+</body>
+</html>
